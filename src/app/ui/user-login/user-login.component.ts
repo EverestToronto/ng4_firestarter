@@ -17,6 +17,14 @@ export class UserLoginComponent implements OnInit {
 
 
   ngOnInit() {
+    this.auth.authChange.subscribe(res => {
+      if(res) {
+        console.log("Logged In");
+        this.router.navigate(['/']);
+      } else {
+        console.log("Not Logged In");
+      }
+    })
   }
 
   /// Social Login

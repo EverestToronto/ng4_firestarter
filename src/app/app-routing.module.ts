@@ -6,11 +6,12 @@ import { UserLoginComponent } from './ui/user-login/user-login.component';
 import { ItemsListComponent } from './items/items-list/items-list.component';
 // import { UploadsListComponent } from './uploads/uploads-list/uploads-list.component';
 import { ReadmePageComponent } from './ui/readme-page/readme-page.component';
+import { DashboardComponent } from './ui/dashboard/dashboard.component';
 
 import { CoreModule } from './core/core.module'
 
 const routes: Routes = [
-  { path: '', component: ReadmePageComponent },
+  { path: '', component: DashboardComponent },
   { path: 'login', component: UserLoginComponent, },
   { path: 'items', component: ItemsListComponent, canActivate: [AuthGuard]},
   { path: 'uploads', loadChildren: './uploads/shared/upload.module#UploadModule' }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
@@ -10,12 +10,15 @@ export class AuthService {
 
   authState: any = null;
 
+  @Output() authChange = new EventEmitter<any>();
+
   constructor(private afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
     private router: Router) {
 
     this.afAuth.authState.subscribe((auth) => {
-      this.authState = auth
+      this.authState = auth;
+      this.authChange.emit(this.authState);
     });
   }
 

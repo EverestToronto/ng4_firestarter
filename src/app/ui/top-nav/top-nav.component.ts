@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
+import { AuthService } from '../../core/auth.service';
+
 @Component({
   selector: 'top-nav',
   templateUrl: './top-nav.component.html',
@@ -26,10 +28,19 @@ export class TopNavComponent implements OnInit {
 
   // collapse:string = "closed";
   show = false;
+  isLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(private _authSrv: AuthService) { }
 
   ngOnInit() {
+    this._authSrv.authChange.subscribe(res => {
+      // console.log(res);
+      if (res) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    })
   }
 
   toggleCollapse() {

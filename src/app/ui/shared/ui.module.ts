@@ -14,7 +14,7 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { TopNavComponent } from '../top-nav/top-nav.component';
 import { FooterNavComponent } from '../footer-nav/footer-nav.component';
 import { ReadmePageComponent } from '../readme-page/readme-page.component';
-
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 
 @NgModule({
@@ -32,7 +32,8 @@ import { ReadmePageComponent } from '../readme-page/readme-page.component';
     TopNavComponent,
     FooterNavComponent,
     UserFormComponent,
-    ReadmePageComponent
+    ReadmePageComponent,
+    DashboardComponent
   ],
   exports: [
     TopNavComponent,

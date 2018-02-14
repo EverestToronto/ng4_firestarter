@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../core/auth.service';
 
@@ -30,17 +31,41 @@ export class TopNavComponent implements OnInit {
   show = false;
   isLoggedIn: boolean = false;
 
-  constructor(private _authSrv: AuthService) { }
+  constructor(private _router: Router,
+              private _authSrv: AuthService) { }
 
   ngOnInit() {
+    this._router.events.subscribe(event => {
+      // console.log(this._router.url);
+      // If on login, check logoutfromlogin boolean
+      if(this._router.url == '/login'){
+        // IF need to signout, just signout
+        if(this._authSrv.logoutFromLogin) {
+          this._authSrv.signOutHelper();
+        } else {
+          // ELSE setup auth change listener
+          this.authChangeListener();
+        }
+      } else {
+        this.authChangeListener();
+      }
+    })
+  }
+
+  authChangeListener() {
     this._authSrv.authChange.subscribe(res => {
       // console.log(res);
       if (res) {
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;
+        this._router.navigate(['/login'])
       }
     })
+  }
+
+  logout() {
+    this._authSrv.signOut();
   }
 
   toggleCollapse() {

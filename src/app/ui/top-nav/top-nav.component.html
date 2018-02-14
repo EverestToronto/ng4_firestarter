@@ -27,7 +27,7 @@
     <a *ngIf="isLoggedIn" class="nav-item" routerLink="/uploads">
       Uploads
     </a>
-    <a *ngIf="isLoggedIn" class="nav-item" routerLink="/uploads">
+    <a *ngIf="isLoggedIn" class="nav-item" (click)="logout()">
       Logout
     </a>
 

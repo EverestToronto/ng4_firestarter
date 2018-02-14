@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 export class AuthService {
 
   authState: any = null;
+  logoutFromLogin = false;
 
   @Output() authChange = new EventEmitter<any>();
 
@@ -133,8 +134,16 @@ export class AuthService {
   //// Sign Out ////
 
   signOut(): void {
+    // this.afAuth.auth.signOut();
+    this.logoutFromLogin = true;
+    // Observable.interval(1500).subscribe(x => {
+    //   console.log()
+      this.router.navigate(['/login'])
+    // });
+  }
+  signOutHelper() {
+    this.logoutFromLogin = false;
     this.afAuth.auth.signOut();
-    this.router.navigate(['/'])
   }
 
 

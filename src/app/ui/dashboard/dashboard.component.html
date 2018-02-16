@@ -1,3 +1,17 @@
-<p>
-  dashboard works!
-</p>
+<div class="columns" >
+  <div class="column is-10 is-offset-1 has-text-centered">
+    <p>Welcome to the dashboard!</p>
+    <br>
+    <button class="button" (click)="showModal()">Show Modal</button>
+  </div>
+</div>
+
+
+
+<!-- MODAL -->
+<div class="columns modalBg" *ngIf="modalBoolean">
+  <div class="column is-12 modalMain has-text-centered">
+    <button (click)="closeModal()" class="button modalClose">Close</button>
+    <h4>Heading</h4>
+  </div>
+</div>

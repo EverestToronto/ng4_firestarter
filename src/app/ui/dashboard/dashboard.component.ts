@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  public modalBoolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showModal() {
+    this.modalBoolean = true;
+  }
+
+  closeModal() {
+    this.modalBoolean = false;
   }
 
 }
